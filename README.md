@@ -44,6 +44,11 @@ The logo artwork is drawn for light backgrounds, so it is placed on a white bran
 plate in the dark footer. If a white on dark logo is supplied later, remove the
 background and padding from `.footer-brand__logo` and the plate disappears.
 
+**Guide and FAQ**
+The guide and FAQ section sits between the quote band and the contact block. All
+ten answers are rendered in full, with no expand and collapse behaviour, so every
+answer is visible to visitors and to search engines on page load.
+
 **Map**
 The contact map uses a keyless Google Maps embed. Swap in an API embed if the
 site needs a custom pin or styling.
@@ -54,4 +59,5 @@ site needs a custom pin or styling.
 - No em dashes in any content
 - All service and feature cards are a single clickable link
 - No reCAPTCHA
+- FAQ answers are always visible, no accordion
 - Respects `prefers-reduced-motion`
