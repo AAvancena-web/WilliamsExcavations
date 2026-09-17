@@ -683,6 +683,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,3.4vw,54px);align-items:stretch;}
 .contact-aside{display:flex;flex-direction:column;}
 .info-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:26px;}
+.info-card--wide{grid-column:1 / -1;}
 .info-card{
   background:var(--white);border:1px solid var(--line);border-radius:var(--radius-m);
   padding:24px;display:flex;gap:16px;align-items:flex-start;
@@ -721,10 +722,13 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
   margin-bottom:clamp(46px,4.5vw,74px);
   font-size:clamp(1rem,1.1vw,1.07rem);color:var(--ink-muted);
 }
-/* centred copy runs the full container width, with no max-width cap */
-.faq-intro p{max-width:none;width:100%;margin-bottom:1.35em;}
-.faq-intro__lead{
-  font-size:clamp(1.05rem,1.3vw,1.2rem);color:var(--ink);font-weight:500;line-height:1.75;
+/* centred copy runs the full container width, with no max-width cap.
+   Every paragraph shares one treatment so the opening paragraph and the
+   paragraphs revealed by read more look identical. */
+.faq-intro p{
+  max-width:none;width:100%;
+  margin-bottom:1.35em;
+  font-size:inherit;font-weight:400;line-height:1.85;color:var(--ink-muted);
 }
 
 /* collapsed body revealed by the read more control */
@@ -736,18 +740,24 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 .faq-intro__more.is-open{opacity:1;}
 .faq-intro__more p:last-child{margin-bottom:0;}
 
+/* plain text control, not styled as a button */
 .read-more{
-  display:inline-flex;align-items:center;gap:11px;
-  background:var(--primary);color:var(--secondary);
-  border:0;border-radius:100px;cursor:pointer;
-  padding:14px 30px;margin-top:10px;
+  display:inline-flex;align-items:center;gap:9px;
+  background:none;border:0;padding:0;margin-top:4px;
+  cursor:pointer;
   font-family:var(--font-body);
-  font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  transition:background .3s var(--ease),color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);
-  box-shadow:0 10px 22px -12px rgba(40,34,34,.6);
+  font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--secondary-deep);
+  transition:color .3s var(--ease);
 }
-.read-more:hover{background:var(--secondary);color:var(--primary);transform:translateY(-2px);box-shadow:0 16px 28px -14px rgba(40,34,34,.7);}
-.read-more i{font-size:12px;transition:transform .35s var(--ease);}
+.read-more__label{position:relative;}
+.read-more__label::after{
+  content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;
+  background:currentColor;
+  transition:background .3s var(--ease);
+}
+.read-more:hover{color:var(--primary);}
+.read-more i{font-size:11px;transition:transform .35s var(--ease);}
 .read-more[aria-expanded="true"] i{transform:rotate(180deg);}
 
 .faq-intro__ctas{
@@ -860,12 +870,14 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
   box-shadow:0 16px 32px -12px rgba(0,0,0,.55), 0 0 0 0 rgba(246,191,12,.6);
   opacity:0;transition:opacity .4s var(--ease),transform .4s var(--ease);
 }
-.call-now.show{animation:callGlow 2.6s var(--ease) infinite;}
+.call-now.show{
+  opacity:1;transform:translateX(-50%) translateY(0);
+  animation:callGlow 2.6s var(--ease) infinite;
+}
 @keyframes callGlow{
   0%,100%{box-shadow:0 16px 32px -12px rgba(0,0,0,.55), 0 0 0 0 rgba(246,191,12,.6);}
   50%{box-shadow:0 16px 32px -12px rgba(0,0,0,.5), 0 0 28px 6px rgba(246,191,12,.6);}
 }
-.call-now.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .call-now i{
   width:26px;height:26px;border-radius:50%;background:var(--primary);color:var(--secondary);
   display:inline-flex;align-items:center;justify-content:center;font-size:12px;
@@ -1466,7 +1478,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
     </div>
 
     <div class="faq-intro" data-reveal>
-      <p class="faq-intro__lead">Whether you are planning a new driveway, clearing a block for a build, or taking on a full civil construction project, excavation and earthmoving work can feel like unfamiliar territory. Most property owners only go through this process once or twice in a lifetime, so it is completely normal to have questions about cost, timing, permits, and what actually happens once the machines arrive on site.</p>
+      <p>Whether you are planning a new driveway, clearing a block for a build, or taking on a full civil construction project, excavation and earthmoving work can feel like unfamiliar territory. Most property owners only go through this process once or twice in a lifetime, so it is completely normal to have questions about cost, timing, permits, and what actually happens once the machines arrive on site.</p>
 
       <div class="faq-intro__more" id="introMore" aria-hidden="true">
           <p>Williams Excavations has been serving Hobart and the surrounding areas of Southern Tasmania for over 24 years, and in that time we have fielded almost every question a homeowner, builder, or developer could ask. As a proudly Tasmanian and family-owned business, we believe an informed client makes for a smoother project from start to finish. That is why we have put together this guide to the questions we hear most often, covering everything from budgeting and scheduling to permits and site conditions.</p>
@@ -1585,18 +1597,11 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
               <a href="mailto:info@williamsexcavations.com.au">info@williamsexcavations.com.au</a>
             </div>
           </div>
-          <div class="info-card">
+          <div class="info-card info-card--wide">
             <i class="fa-solid fa-location-dot"></i>
             <div>
               <h4>Service Area</h4>
               <span>Hobart, Tasmania 7000<br>and all of Southern Tasmania</span>
-            </div>
-          </div>
-          <div class="info-card">
-            <i class="fa-solid fa-clock"></i>
-            <div>
-              <h4>Opening Hours</h4>
-              <span>Monday to Friday, 7am to 5pm<br>Saturday by appointment</span>
             </div>
           </div>
         </div>
@@ -1715,7 +1720,6 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
           <li><i class="fa-solid fa-location-dot"></i><span>Hobart, Tasmania 7000<br>Servicing all of Southern Tasmania</span></li>
           <li><i class="fa-solid fa-phone"></i><a href="tel:0429680514">0429 680 514</a></li>
           <li><i class="fa-solid fa-envelope"></i><a href="mailto:info@williamsexcavations.com.au">info@williamsexcavations.com.au</a></li>
-          <li><i class="fa-solid fa-clock"></i><span>Monday to Friday, 7am to 5pm</span></li>
         </ul>
         <a href="#contact" class="btn btn--block" style="margin-top:6px"><i class="fa-solid fa-clipboard-check"></i> Free Quote</a>
       </div>

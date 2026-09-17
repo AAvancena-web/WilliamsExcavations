@@ -47,10 +47,10 @@ background and padding from `.footer-brand__logo` and the plate disappears.
 **Guide and FAQ**
 The guide and FAQ section sits between the quote band and the contact block.
 
-The intro is centre aligned and full width. Only the first paragraph shows on
-load, and a read more control reveals the rest, followed by two calls to action.
-The panel animates on its measured height, so paragraphs can be edited freely
-without touching the CSS.
+The intro is centre aligned and full width, with one shared paragraph treatment
+throughout. Only the first paragraph shows on load, and a plain text read more
+control reveals the rest, followed by two calls to action. The panel animates on
+its measured height, so paragraphs can be edited freely without touching the CSS.
 
 The ten answers below are rendered in full, with no expand and collapse
 behaviour, so every answer is visible to visitors and to search engines on page
