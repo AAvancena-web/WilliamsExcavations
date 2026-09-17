@@ -39,10 +39,13 @@ pull attention to the calls to action. The pulse pauses and holds at full
 brightness on hover, and is disabled under `prefers-reduced-motion`. Glow and
 sweep colours are per variant via `--btn-glow` and `--btn-sheen`.
 
-**Footer logo**
+**Logo on dark backgrounds**
 The logo artwork is drawn for light backgrounds, so it is placed on a white brand
-plate in the dark footer. If a white on dark logo is supplied later, remove the
-background and padding from `.footer-brand__logo` and the plate disappears.
+plate in both the dark footer and the mobile menu drawer. A brightness and invert
+filter is deliberately not used, since it flattens the whole mark to a solid white
+block and loses the icon. If a white on dark logo is supplied later, remove the
+background and padding from `.footer-brand__logo` and `.nav-drawer__brand` and the
+plates disappear.
 
 **Guide and FAQ**
 The guide and FAQ section sits between the quote band and the contact block.
