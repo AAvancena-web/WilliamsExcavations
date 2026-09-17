@@ -101,17 +101,13 @@ p:last-child{margin-bottom:0;}
 
 /* ---------- 4. TYPE HELPERS ---------- */
 .eyebrow{
-  display:inline-flex;align-items:center;gap:12px;
+  display:inline-block;
   font-family:var(--font-body);
-  font-size:12px;font-weight:700;letter-spacing:.22em;
+  font-size:12px;font-weight:700;letter-spacing:.24em;
   text-transform:uppercase;color:var(--secondary-deep);
   margin-bottom:18px;
 }
-.eyebrow::before{
-  content:"";width:34px;height:3px;background:var(--secondary);flex:none;border-radius:2px;
-}
 .section--dark .eyebrow{color:var(--secondary);}
-.eyebrow--center{justify-content:center;}
 
 .h-xl{font-size:clamp(2.6rem,6vw,4.9rem);}
 .h-lg{font-size:clamp(2.1rem,4.2vw,3.5rem);}
@@ -135,15 +131,33 @@ p:last-child{margin-bottom:0;}
 .btn{
   --btn-bg:var(--secondary);
   --btn-fg:var(--primary);
+  --btn-glow:rgba(246,191,12,.62);
+  --btn-sheen:rgba(255,255,255,.55);
   display:inline-flex;align-items:center;justify-content:center;gap:11px;
-  background:var(--btn-bg);color:var(--btn-fg);
+  color:var(--btn-fg);
+  background-color:var(--btn-bg);
+  /* light sweep that travels across the face of the button */
+  background-image:linear-gradient(115deg,transparent 18%,var(--btn-sheen) 42%,transparent 66%);
+  background-size:260% 100%;
+  background-repeat:no-repeat;
+  background-position:-90% 0;
   font-family:var(--font-body);
   font-size:14px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
   padding:17px 34px;border:0;border-radius:var(--radius-s);
   cursor:pointer;position:relative;overflow:hidden;isolation:isolate;
   transition:transform .35s var(--ease),box-shadow .35s var(--ease),color .3s var(--ease);
-  box-shadow:0 10px 24px -12px rgba(40,34,34,.55);
+  box-shadow:0 10px 24px -12px rgba(40,34,34,.55), 0 0 0 0 var(--btn-glow);
+  animation:btnGlow 3.2s var(--ease) infinite, btnSheen 3.2s var(--ease) infinite;
   line-height:1.2;text-align:center;
+}
+/* soft pulse that draws the eye to every call to action */
+@keyframes btnGlow{
+  0%,100%{box-shadow:0 10px 24px -12px rgba(40,34,34,.55), 0 0 0 0 var(--btn-glow);}
+  50%{box-shadow:0 12px 28px -12px rgba(40,34,34,.5), 0 0 26px 5px var(--btn-glow);}
+}
+@keyframes btnSheen{
+  0%{background-position:160% 0;}
+  38%,100%{background-position:-90% 0;}
 }
 .btn::after{
   content:"";position:absolute;inset:0;z-index:-1;
@@ -151,17 +165,24 @@ p:last-child{margin-bottom:0;}
   transform:translateY(101%);
   transition:transform .42s var(--ease);
 }
-.btn:hover{transform:translateY(-3px);box-shadow:0 18px 34px -14px rgba(40,34,34,.6);color:var(--white);}
-.btn:hover::after{transform:translateY(0);}
+/* on hover the pulse stops and holds at full brightness */
+.btn:hover,.btn:focus-visible{
+  transform:translateY(-3px);
+  animation-play-state:paused;
+  box-shadow:0 18px 34px -14px rgba(40,34,34,.6), 0 0 34px 7px var(--btn-glow);
+  color:var(--white);
+}
+.btn:hover::after,.btn:focus-visible::after{transform:translateY(0);}
+.btn:active{transform:translateY(-1px);}
 .btn i{font-size:15px;}
 
-.btn--dark{--btn-bg:var(--primary);--btn-fg:var(--white);}
+.btn--dark{--btn-bg:var(--primary);--btn-fg:var(--white);--btn-glow:rgba(246,191,12,.48);--btn-sheen:rgba(246,191,12,.32);}
 .btn--dark::after{background:var(--secondary);}
-.btn--dark:hover{color:var(--primary);}
+.btn--dark:hover,.btn--dark:focus-visible{color:var(--primary);}
 
-.btn--light{--btn-bg:var(--white);--btn-fg:var(--primary);}
+.btn--light{--btn-bg:var(--white);--btn-fg:var(--primary);--btn-glow:rgba(255,255,255,.55);--btn-sheen:rgba(246,191,12,.42);}
 .btn--light::after{background:var(--secondary);}
-.btn--light:hover{color:var(--primary);}
+.btn--light:hover,.btn--light:focus-visible{color:var(--primary);}
 
 .btn--block{width:100%;}
 .btn--lg{padding:20px 40px;font-size:15px;}
@@ -701,7 +722,20 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
   color:var(--white);font-size:1.15rem;letter-spacing:.08em;margin-bottom:22px;position:relative;padding-bottom:14px;
 }
 .site-footer h4::after{content:"";position:absolute;left:0;bottom:0;width:38px;height:3px;background:var(--secondary);border-radius:2px;}
-.footer-brand img{width:210px;margin-bottom:22px;}
+/* The logo artwork is drawn for light backgrounds, so its wordmark washes out on the
+   dark footer. A white brand plate renders it exactly as designed and hides the solid
+   panel baked in behind the icon. If a white on dark logo is supplied later, drop the
+   background and padding here and the plate disappears. */
+.footer-brand__logo{
+  display:inline-block;background:var(--white);
+  padding:18px 24px;border-radius:var(--radius-m);
+  margin-bottom:26px;
+  box-shadow:0 14px 30px -16px rgba(0,0,0,.75);
+  border-bottom:4px solid var(--secondary);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.footer-brand__logo:hover{transform:translateY(-3px);box-shadow:0 20px 38px -16px rgba(0,0,0,.8);}
+.footer-brand__logo img{width:236px;max-width:100%;display:block;}
 .footer-brand p{font-size:14.5px;line-height:1.8;}
 .foot-social{display:flex;gap:10px;margin-top:22px;}
 .foot-social a{
@@ -724,9 +758,8 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 @media (max-width:560px){.footer-grid{grid-template-columns:1fr;}.footer-bottom .container{justify-content:center;text-align:center;}}
 
 /* ---------- 18. FLOATING UI ---------- */
-/* reCAPTCHA badge sits bottom right, so the scroll to top button is stacked above it */
 .to-top{
-  position:fixed;right:20px;bottom:104px;z-index:880;
+  position:fixed;right:20px;bottom:24px;z-index:880;
   width:50px;height:50px;border-radius:50%;border:0;cursor:pointer;
   background:var(--primary);color:var(--secondary);font-size:16px;
   box-shadow:0 14px 28px -12px rgba(0,0,0,.6);
@@ -736,15 +769,6 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 .to-top.show{opacity:1;visibility:visible;transform:none;}
 .to-top:hover{background:var(--secondary);color:var(--primary);}
 
-.recaptcha-badge{
-  position:fixed;right:14px;bottom:14px;z-index:870;
-  width:70px;height:60px;border-radius:2px;overflow:hidden;
-  background:var(--white);box-shadow:0 0 5px rgba(0,0,0,.28);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
-  font-size:8px;color:#9aa0a6;text-align:center;line-height:1.2;
-}
-.recaptcha-badge i{font-size:22px;color:#1c3aa9;}
-
 /* floating call now button, mobile only, bottom centre */
 .call-now{
   position:fixed;left:50%;transform:translateX(-50%) translateY(20px);
@@ -752,8 +776,13 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
   background:var(--secondary);color:var(--primary);
   font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   padding:15px 30px;border-radius:100px;
-  box-shadow:0 16px 32px -12px rgba(0,0,0,.55);
+  box-shadow:0 16px 32px -12px rgba(0,0,0,.55), 0 0 0 0 rgba(246,191,12,.6);
   opacity:0;transition:opacity .4s var(--ease),transform .4s var(--ease);
+}
+.call-now.show{animation:callGlow 2.6s var(--ease) infinite;}
+@keyframes callGlow{
+  0%,100%{box-shadow:0 16px 32px -12px rgba(0,0,0,.55), 0 0 0 0 rgba(246,191,12,.6);}
+  50%{box-shadow:0 16px 32px -12px rgba(0,0,0,.5), 0 0 28px 6px rgba(246,191,12,.6);}
 }
 .call-now.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .call-now i{
@@ -762,20 +791,14 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
   animation:shake 2.6s var(--ease) infinite;
 }
 @keyframes shake{0%,82%,100%{transform:rotate(0)}86%{transform:rotate(-16deg)}90%{transform:rotate(16deg)}94%{transform:rotate(-10deg)}}
-/* the live Google badge gets the same placement as the mock one */
-.grecaptcha-badge{z-index:870!important;}
 
 @media (max-width:860px){
   .call-now{display:inline-flex;}
-  /* bottom to top on phones: call button, then reCAPTCHA, then scroll to top */
-  .recaptcha-badge,.grecaptcha-badge{bottom:84px!important;right:12px!important;}
-  .to-top{bottom:156px;right:14px;width:44px;height:44px;}
+  /* clears the centred call now button */
+  .to-top{bottom:88px;right:14px;width:44px;height:44px;}
 }
 @media (max-width:380px){
   .call-now{padding:14px 24px;font-size:13px;}
-  /* extra clearance so the badge never touches the centred call button */
-  .recaptcha-badge,.grecaptcha-badge{bottom:100px!important;}
-  .to-top{bottom:172px;}
 }
 
 /* scroll progress line */
@@ -792,6 +815,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
   [data-reveal]{opacity:1;transform:none;}
+  .btn,.call-now.show{animation:none!important;background-position:-90% 0;}
   html{scroll-behavior:auto;}
 }
 </style>
@@ -1059,7 +1083,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 <section class="section" id="services">
   <div class="container">
     <div class="section-head section-head--center" data-reveal>
-      <span class="eyebrow eyebrow--center">What We Do</span>
+      <span class="eyebrow">What We Do</span>
       <h2 class="h-lg">Our Services</h2>
       <p class="lead">As one of the most trusted earthmovers and excavators Hobart has to offer, we handle the whole job from first cut to final trim. Every project is quoted up front, run by qualified operators and finished to a standard you can build on.</p>
     </div>
@@ -1122,7 +1146,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 <section class="section section--alt section--tight">
   <div class="container">
     <div class="section-head section-head--center" data-reveal>
-      <span class="eyebrow eyebrow--center">Most Requested</span>
+      <span class="eyebrow">Most Requested</span>
       <h2 class="h-lg">Popular Around Hobart</h2>
     </div>
 
@@ -1214,7 +1238,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 <section class="section section--dark">
   <div class="container">
     <div class="section-head section-head--center" data-reveal>
-      <span class="eyebrow eyebrow--center">How We Work</span>
+      <span class="eyebrow">How We Work</span>
       <h2 class="h-lg">Simple Process, Solid Results</h2>
       <p class="lead">No guesswork and no surprise invoices. Here is exactly what happens from your first call to the final clean up.</p>
     </div>
@@ -1254,7 +1278,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 <section class="section" id="projects">
   <div class="container">
     <div class="section-head section-head--center" data-reveal>
-      <span class="eyebrow eyebrow--center">Recent Projects</span>
+      <span class="eyebrow">Recent Projects</span>
       <h2 class="h-lg">Our Latest Work</h2>
       <p class="lead">A look at recent excavation, earthmoving and civil jobs completed across Hobart and the surrounding areas.</p>
     </div>
@@ -1302,7 +1326,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 <section class="section section--dark reviews">
   <div class="container">
     <div class="section-head section-head--center" data-reveal>
-      <span class="eyebrow eyebrow--center">Client Feedback</span>
+      <span class="eyebrow">Client Feedback</span>
       <h2 class="h-lg">What Our Clients Say</h2>
     </div>
 
@@ -1356,7 +1380,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 <section class="section section--alt" id="contact">
   <div class="container">
     <div class="section-head section-head--center" data-reveal>
-      <span class="eyebrow eyebrow--center">Get In Touch</span>
+      <span class="eyebrow">Get In Touch</span>
       <h2 class="h-lg">Contact Williams Excavations</h2>
       <p class="lead">Providing a wide range of excavation and earthmoving services throughout Southern Tasmania. Complete the form and we will be in touch as soon as possible.</p>
     </div>
@@ -1449,7 +1473,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
               <button type="submit" class="btn btn--block btn--lg"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
             </div>
           </div>
-          <p class="form-note">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
+          <p class="form-note">We usually reply the same business day. For anything urgent please call <a href="tel:0429680514" style="color:var(--secondary-deep);font-weight:600">0429 680 514</a>.</p>
           <div class="form-status" role="status"></div>
         </form>
       </div>
@@ -1468,7 +1492,9 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
     <div class="footer-grid">
 
       <div class="footer-brand">
-        <img src="https://www.williamsexcavations.com.au/wp-content/uploads/2020/11/footer-logo.png" alt="Williams Excavations">
+        <a class="footer-brand__logo" href="/" aria-label="Williams Excavations home">
+          <img src="https://www.williamsexcavations.com.au/wp-content/uploads/2020/11/cropped-williams-excavations-logo.png" alt="Williams Excavations">
+        </a>
         <p>With over 24 years of industry experience, Williams Excavations is a dedicated professional team of highly skilled and seasoned specialists committed to delivering the highest level of workmanship, service excellence and customer satisfaction.</p>
         <div class="foot-social">
           <a href="https://www.facebook.com/williamsexcavations/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -1525,13 +1551,6 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 
 <!-- Floating UI -->
 <button class="to-top" id="toTop" aria-label="Scroll back to top"><i class="fa-solid fa-chevron-up"></i></button>
-
-<!-- Mock reCAPTCHA badge so the stacking order can be checked. The live badge is
-     injected by Google in the bottom right, the scroll to top button sits above it. -->
-<div class="recaptcha-badge" aria-hidden="true">
-  <i class="fa-solid fa-shield-halved"></i>
-  <span>protected by<br>reCAPTCHA</span>
-</div>
 
 <a href="tel:0429680514" class="call-now" id="callNow"><i class="fa-solid fa-phone"></i> Call Now</a>
 
