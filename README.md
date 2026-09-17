@@ -17,6 +17,15 @@ so the page previews on its own.
 All images currently point at the existing WordPress media library URLs
 (`/wp-content/uploads/...`). Replace them as the new artwork is uploaded.
 
+The six `2024/09` service graphics from the old homepage carousel are shown as a
+three column grid in the service graphics section, between Our Services and
+Popular Around Hobart. Each one links to its matching service page. `2.jpg`
+points at `/our-services/`, since its subject could not be confirmed.
+
+Two images from the old homepage are not used in this build: `footer-logo.png`
+(the footer and drawer now use the main logo on a white plate) and
+`black-img-2.jpg` (the old section background texture).
+
 **Container widths**
 - Laptop and desktop: `1440px`
 - Screens `1800px` and wider: `1880px`
