@@ -17,10 +17,17 @@ so the page previews on its own.
 All images currently point at the existing WordPress media library URLs
 (`/wp-content/uploads/...`). Replace them as the new artwork is uploaded.
 
-The six `2024/09` service graphics from the old homepage carousel are shown as a
-three column grid in the service graphics section, between Our Services and
-Popular Around Hobart. Each one links to its matching service page. `2.jpg`
+The six `2024/09` service posters from the old homepage carousel run as a
+continuous right to left marquee directly below the service cards, inside the
+Our Services section. Each poster links to its matching service page. `2.jpg`
 points at `/our-services/`, since its subject could not be confirmed.
+
+The marquee track holds two identical sets and travels exactly one set width,
+so the loop has no visible seam. Items carry their own right margin rather than
+using flex `gap`, which would make one set wider than half the track and break
+that alignment. It pauses on hover and on keyboard focus, the duplicated set is
+hidden from assistive tech and removed from the tab order, and under
+`prefers-reduced-motion` the animation stops and the strip becomes scrollable.
 
 Two images from the old homepage are not used in this build: `footer-logo.png`
 (the footer and drawer now use the main logo on a white plate) and
