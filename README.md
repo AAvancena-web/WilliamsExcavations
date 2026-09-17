@@ -45,9 +45,16 @@ plate in the dark footer. If a white on dark logo is supplied later, remove the
 background and padding from `.footer-brand__logo` and the plate disappears.
 
 **Guide and FAQ**
-The guide and FAQ section sits between the quote band and the contact block. All
-ten answers are rendered in full, with no expand and collapse behaviour, so every
-answer is visible to visitors and to search engines on page load.
+The guide and FAQ section sits between the quote band and the contact block.
+
+The intro is centre aligned and full width. Only the first paragraph shows on
+load, and a read more control reveals the rest, followed by two calls to action.
+The panel animates on its measured height, so paragraphs can be edited freely
+without touching the CSS.
+
+The ten answers below are rendered in full, with no expand and collapse
+behaviour, so every answer is visible to visitors and to search engines on page
+load.
 
 **Map**
 The contact map uses a keyless Google Maps embed. Swap in an API embed if the

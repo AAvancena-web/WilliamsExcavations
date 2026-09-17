@@ -717,13 +717,43 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
 
 /* ---------- 16b. GUIDE AND FAQ ---------- */
 .faq-intro{
-  columns:2;column-gap:clamp(30px,4vw,68px);
+  text-align:center;
   margin-bottom:clamp(46px,4.5vw,74px);
   font-size:clamp(1rem,1.1vw,1.07rem);color:var(--ink-muted);
 }
-.faq-intro p{break-inside:avoid;margin-bottom:1.35em;}
-.faq-intro p:last-child{margin-bottom:0;}
-@media (max-width:860px){.faq-intro{columns:1;}}
+/* centred copy runs the full container width, with no max-width cap */
+.faq-intro p{max-width:none;width:100%;margin-bottom:1.35em;}
+.faq-intro__lead{
+  font-size:clamp(1.05rem,1.3vw,1.2rem);color:var(--ink);font-weight:500;line-height:1.75;
+}
+
+/* collapsed body revealed by the read more control */
+.faq-intro__more{
+  max-height:0;overflow:hidden;
+  transition:max-height .6s var(--ease),opacity .45s var(--ease);
+  opacity:0;
+}
+.faq-intro__more.is-open{opacity:1;}
+.faq-intro__more p:last-child{margin-bottom:0;}
+
+.read-more{
+  display:inline-flex;align-items:center;gap:11px;
+  background:var(--primary);color:var(--secondary);
+  border:0;border-radius:100px;cursor:pointer;
+  padding:14px 30px;margin-top:10px;
+  font-family:var(--font-body);
+  font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  transition:background .3s var(--ease),color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);
+  box-shadow:0 10px 22px -12px rgba(40,34,34,.6);
+}
+.read-more:hover{background:var(--secondary);color:var(--primary);transform:translateY(-2px);box-shadow:0 16px 28px -14px rgba(40,34,34,.7);}
+.read-more i{font-size:12px;transition:transform .35s var(--ease);}
+.read-more[aria-expanded="true"] i{transform:rotate(180deg);}
+
+.faq-intro__ctas{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
+  margin-top:clamp(28px,3vw,40px);
+}
 
 .faq-heading{
   text-align:center;font-size:clamp(1.6rem,2.6vw,2.35rem);
@@ -1436,10 +1466,22 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
     </div>
 
     <div class="faq-intro" data-reveal>
-        <p>Whether you are planning a new driveway, clearing a block for a build, or taking on a full civil construction project, excavation and earthmoving work can feel like unfamiliar territory. Most property owners only go through this process once or twice in a lifetime, so it is completely normal to have questions about cost, timing, permits, and what actually happens once the machines arrive on site.</p>
-        <p>Williams Excavations has been serving Hobart and the surrounding areas of Southern Tasmania for over 24 years, and in that time we have fielded almost every question a homeowner, builder, or developer could ask. As a proudly Tasmanian and family-owned business, we believe an informed client makes for a smoother project from start to finish. That is why we have put together this guide to the questions we hear most often, covering everything from budgeting and scheduling to permits and site conditions.</p>
-        <p>Our team operates a fleet of well-maintained modern machinery and light equipment, and we take on projects of every size and scope, from a single residential driveway to large-scale civil works and demolition. No matter how big or small the job, our approach stays the same: safe, efficient, and reliable work, delivered within budget and on time, every single time.</p>
-        <p>Below you will find detailed answers to the five questions we are asked most frequently. If you cannot find what you are looking for, our team is always happy to talk it through over the phone or during a free, no-obligation, on-site quote.</p>
+      <p class="faq-intro__lead">Whether you are planning a new driveway, clearing a block for a build, or taking on a full civil construction project, excavation and earthmoving work can feel like unfamiliar territory. Most property owners only go through this process once or twice in a lifetime, so it is completely normal to have questions about cost, timing, permits, and what actually happens once the machines arrive on site.</p>
+
+      <div class="faq-intro__more" id="introMore" aria-hidden="true">
+          <p>Williams Excavations has been serving Hobart and the surrounding areas of Southern Tasmania for over 24 years, and in that time we have fielded almost every question a homeowner, builder, or developer could ask. As a proudly Tasmanian and family-owned business, we believe an informed client makes for a smoother project from start to finish. That is why we have put together this guide to the questions we hear most often, covering everything from budgeting and scheduling to permits and site conditions.</p>
+          <p>Our team operates a fleet of well-maintained modern machinery and light equipment, and we take on projects of every size and scope, from a single residential driveway to large-scale civil works and demolition. No matter how big or small the job, our approach stays the same: safe, efficient, and reliable work, delivered within budget and on time, every single time.</p>
+          <p>Below you will find detailed answers to the five questions we are asked most frequently. If you cannot find what you are looking for, our team is always happy to talk it through over the phone or during a free, no-obligation, on-site quote.</p>
+      </div>
+
+      <button type="button" class="read-more" id="introToggle" aria-expanded="false" aria-controls="introMore">
+        <span class="read-more__label">Read More</span> <i class="fa-solid fa-chevron-down"></i>
+      </button>
+
+      <div class="faq-intro__ctas">
+        <a href="#contact" class="btn btn--lg"><i class="fa-solid fa-clipboard-check"></i> Get Your Free Quote</a>
+        <a href="tel:0429680514" class="btn btn--dark btn--lg"><i class="fa-solid fa-phone"></i> Call 0429 680 514</a>
+      </div>
     </div>
 
     <div class="faq-heading" data-reveal>
@@ -1881,6 +1923,45 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
       });
     });
   });
+
+  /* ---------- read more toggle on the guide intro ---------- */
+  var moreBtn = document.getElementById('introToggle');
+  var moreBox = document.getElementById('introMore');
+  if(moreBtn && moreBox){
+    var moreOpen = false;
+
+    function setMore(open){
+      moreOpen = open;
+      moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      moreBox.setAttribute('aria-hidden', open ? 'false' : 'true');
+      moreBox.classList.toggle('is-open', open);
+      moreBtn.querySelector('.read-more__label').textContent = open ? 'Read Less' : 'Read More';
+
+      if(reduce){
+        moreBox.style.maxHeight = open ? 'none' : '0px';
+        return;
+      }
+      if(open){
+        moreBox.style.maxHeight = moreBox.scrollHeight + 'px';
+        moreBox.addEventListener('transitionend', function done(e){
+          if(e.propertyName === 'max-height' && moreOpen){ moreBox.style.maxHeight = 'none'; }
+          moreBox.removeEventListener('transitionend', done);
+        });
+      } else {
+        moreBox.style.maxHeight = moreBox.scrollHeight + 'px';
+        window.requestAnimationFrame(function(){
+          window.requestAnimationFrame(function(){ moreBox.style.maxHeight = '0px'; });
+        });
+      }
+    }
+
+    moreBtn.addEventListener('click', function(){ setMore(!moreOpen); });
+
+    /* keep the open panel the right height when the text reflows */
+    window.addEventListener('resize', function(){
+      if(moreOpen && !reduce) moreBox.style.maxHeight = 'none';
+    });
+  }
 
   /* ---------- forms (front end only, wire to Contact Form 7 in WordPress) ---------- */
   Array.prototype.forEach.call(document.querySelectorAll('.js-form'), function(form){
