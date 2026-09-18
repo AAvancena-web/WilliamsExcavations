@@ -18,6 +18,11 @@ standalone page in the repository root (`/index.html`).
 design with no per page work. The menu still comes from the existing `top`
 menu location, so it stays editable under Appearance > Menus.
 
+**The guide, FAQ and contact blocks are part of the footer.** Everything from
+*Your Questions Answered* down to the footer renders on every page, not just
+the homepage, so their content lives on the **Site Design** options page rather
+than on any single page.
+
 **The homepage is an assignable page template.** `Homepage Redesign` appears in
 Page Attributes > Template. All of its content comes from ACF, so the page
 needs no page builder rows.
@@ -52,7 +57,8 @@ rules already in the child `style.css`.
    saying how many fields it wrote.
 6. Set **Settings > Reading** to use that page as the static front page.
 7. In **Site Design** (new admin menu item), pick the CF7 form for the hero, the
-   contact block and the inner page banner.
+   contact block and the inner page banner. The guide, FAQ and contact content
+   lives here too, since those blocks render in the footer on every page.
 
 ## Contact Form 7
 
@@ -77,7 +83,9 @@ Create one form and reuse it. This markup matches the design grid:
 ## Editing later
 
 - **Homepage content**: edit the page, use the tabs in the Homepage Redesign box.
-- **Header, footer, inner banner**: **Site Design** in the admin menu.
+  This covers the hero down to the quote band.
+- **Header, footer, inner banner, guide, FAQ and contact**: **Site Design** in
+  the admin menu. Everything from the guide down renders on every page.
 - **Menu**: Appearance > Menus, `top` location, two levels deep.
 - **Inner page banner image**: set a featured image on the page to override the
   site wide default.
@@ -108,8 +116,11 @@ twenty-seventeen-child-theme/
 │   ├── acf-fields.php                field groups and the options page
 │   └── seeder.php                    the one time seeder
 ├── template-parts/
-│   ├── home/section-*.php            one file per homepage section
-│   └── global/inner-banner.php       inner page banner with the quote form
+│   ├── home/section-*.php            hero down to the quote band
+│   └── global/
+│       ├── inner-banner.php          inner page banner with the quote form
+│       ├── faq.php                   guide and FAQ, global footer
+│       └── contact.php               contact, map and form, global footer
 └── assets/
     ├── css/we-redesign.css
     └── js/we-redesign.js
@@ -127,4 +138,8 @@ twenty-seventeen-child-theme/
 - **Font Awesome** is enqueued from cdnjs 6.5.2. If the Font Awesome 5 Pro kit
   the old header loaded is still licensed, swap the url in `we_enqueue_icons()`.
 - **Test on staging first.** Replacing `header.php` and `footer.php` changes
-  every page on the site.
+  every page on the site, and the guide, FAQ and contact blocks now appear on
+  every page as well.
+- **The existing contact page will duplicate the contact block.** Since the
+  block is now global, review `/contact-us/` and strip its old rows so the
+  information is not shown twice.

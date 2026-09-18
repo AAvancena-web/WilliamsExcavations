@@ -12,7 +12,9 @@
 
 get_header();
 
-$we_sections = array( 'hero', 'stats', 'services', 'features', 'about', 'process', 'projects', 'reviews', 'cta', 'faq', 'contact' );
+// The guide, FAQ and contact blocks are not listed here: they render in the
+// global footer, so they appear on every page rather than the homepage only.
+$we_sections = array( 'hero', 'stats', 'services', 'features', 'about', 'process', 'projects', 'reviews', 'cta' );
 
 /**
  * Filter the homepage sections and their order.

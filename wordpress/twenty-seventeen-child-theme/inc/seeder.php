@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WE_SEED_VERSION', '1.0.0' );
+define( 'WE_SEED_VERSION', '1.1.0' );
 define( 'WE_SEED_OPTION', 'we_seed_version' );
 define( 'WE_HOME_TEMPLATE', 'page-templates/template-homepage.php' );
 

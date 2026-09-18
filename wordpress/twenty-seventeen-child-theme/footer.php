@@ -12,6 +12,16 @@ $we_fcta  = we_link( we_opt( 'opt_footer_cta' ), __( 'Free Quote', 'twentysevent
 ?>
 </div><!-- #we-main -->
 
+<?php
+/*
+ * The guide and FAQ block, then the contact block, are part of the global
+ * footer, so they appear on every page. Their content lives on the Site
+ * Design options page rather than on any single page.
+ */
+get_template_part( 'template-parts/global/faq' );
+get_template_part( 'template-parts/global/contact' );
+?>
+
 <footer class="we-site-footer">
 	<div class="we-container">
 		<div class="we-footer-grid">

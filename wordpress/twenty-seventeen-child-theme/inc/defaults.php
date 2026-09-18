@@ -91,6 +91,31 @@ function we_default_options() {
 		'opt_inner_form_sub'     => 'Tell us about your job and we will come back to you with an obligation free price, usually the same business day.',
 		'opt_inner_form_id'      => '',
 		'opt_inner_form_note'    => 'We reply fast. Prefer to talk? Call 0429 680 514.',
+
+		/* guide and faq, rendered in the global footer on every page */
+		'faq_eyebrow'      => 'Your Questions Answered',
+		'faq_heading'      => 'Excavation and Earthmoving in Hobart: What You Need to Know',
+		'faq_intro_lead'   => 'Whether you are planning a new driveway, clearing a block for a build, or taking on a full civil construction project, excavation and earthmoving work can feel like unfamiliar territory. Most property owners only go through this process once or twice in a lifetime, so it is completely normal to have questions about cost, timing, permits, and what actually happens once the machines arrive on site.',
+		'faq_intro_more'   => "<p>Williams Excavations has been serving Hobart and the surrounding areas of Southern Tasmania for over 24 years, and in that time we have fielded almost every question a homeowner, builder, or developer could ask. As a proudly Tasmanian and family-owned business, we believe an informed client makes for a smoother project from start to finish. That is why we have put together this guide to the questions we hear most often, covering everything from budgeting and scheduling to permits and site conditions.</p>\n<p>Our team operates a fleet of well-maintained modern machinery and light equipment, and we take on projects of every size and scope, from a single residential driveway to large-scale civil works and demolition. No matter how big or small the job, our approach stays the same: safe, efficient, and reliable work, delivered within budget and on time, every single time.</p>\n<p>Below you will find detailed answers to the five questions we are asked most frequently. If you cannot find what you are looking for, our team is always happy to talk it through over the phone or during a free, no-obligation, on-site quote.</p>",
+		'faq_cta_primary'   => array( 'title' => 'Get Your Free Quote', 'url' => '#we-contact', 'target' => '' ),
+		'faq_cta_secondary' => array( 'title' => 'Call 0429 680 514',   'url' => 'tel:0429680514', 'target' => '' ),
+		'faq_list_heading'  => 'Frequently Asked Questions',
+		'faqs'              => we_default_faqs(),
+
+		/* contact, rendered in the global footer on every page */
+		'contact_eyebrow'      => 'Get In Touch',
+		'contact_heading'      => 'Contact Williams Excavations',
+		'contact_intro'        => 'Providing a wide range of excavation and earthmoving services throughout Southern Tasmania. Complete the form and we will be in touch as soon as possible.',
+		'contact_cards'        => array(
+			array( 'icon' => 'fa-solid fa-phone',        'title' => 'Call Us',      'text' => '0429 680 514',                    'url' => 'tel:0429680514', 'wide' => '0' ),
+			array( 'icon' => 'fa-solid fa-envelope',     'title' => 'Email Us',     'text' => 'info@williamsexcavations.com.au', 'url' => 'mailto:info@williamsexcavations.com.au', 'wide' => '0' ),
+			array( 'icon' => 'fa-solid fa-location-dot', 'title' => 'Service Area', 'text' => "Hobart, Tasmania 7000\nand all of Southern Tasmania", 'url' => '', 'wide' => '1' ),
+		),
+		'contact_map'          => 'https://maps.google.com/maps?q=Hobart%2C%20Tasmania%207000%2C%20Australia&t=&z=12&ie=UTF8&iwloc=&output=embed',
+		'contact_form_heading' => 'Send Us a Message',
+		'contact_form_sub'     => 'Complete the form below and click send. We will be in touch as soon as possible.',
+		'contact_form_id'      => '',
+		'contact_form_note'    => 'We usually reply the same business day. For anything urgent please call 0429 680 514.',
 	);
 }
 
@@ -221,30 +246,6 @@ function we_default_home() {
 		'cta_primary'   => array( 'title' => 'Request a Quote', 'url' => '#we-contact', 'target' => '' ),
 		'cta_secondary' => array( 'title' => '0429 680 514',    'url' => 'tel:0429680514', 'target' => '' ),
 
-		/* guide and faq */
-		'faq_eyebrow'      => 'Your Questions Answered',
-		'faq_heading'      => 'Excavation and Earthmoving in Hobart: What You Need to Know',
-		'faq_intro_lead'   => 'Whether you are planning a new driveway, clearing a block for a build, or taking on a full civil construction project, excavation and earthmoving work can feel like unfamiliar territory. Most property owners only go through this process once or twice in a lifetime, so it is completely normal to have questions about cost, timing, permits, and what actually happens once the machines arrive on site.',
-		'faq_intro_more'   => "<p>Williams Excavations has been serving Hobart and the surrounding areas of Southern Tasmania for over 24 years, and in that time we have fielded almost every question a homeowner, builder, or developer could ask. As a proudly Tasmanian and family-owned business, we believe an informed client makes for a smoother project from start to finish. That is why we have put together this guide to the questions we hear most often, covering everything from budgeting and scheduling to permits and site conditions.</p>\n<p>Our team operates a fleet of well-maintained modern machinery and light equipment, and we take on projects of every size and scope, from a single residential driveway to large-scale civil works and demolition. No matter how big or small the job, our approach stays the same: safe, efficient, and reliable work, delivered within budget and on time, every single time.</p>\n<p>Below you will find detailed answers to the five questions we are asked most frequently. If you cannot find what you are looking for, our team is always happy to talk it through over the phone or during a free, no-obligation, on-site quote.</p>",
-		'faq_cta_primary'   => array( 'title' => 'Get Your Free Quote', 'url' => '#we-contact', 'target' => '' ),
-		'faq_cta_secondary' => array( 'title' => 'Call 0429 680 514',   'url' => 'tel:0429680514', 'target' => '' ),
-		'faq_list_heading'  => 'Frequently Asked Questions',
-		'faqs'              => we_default_faqs(),
-
-		/* contact */
-		'contact_eyebrow'      => 'Get In Touch',
-		'contact_heading'      => 'Contact Williams Excavations',
-		'contact_intro'        => 'Providing a wide range of excavation and earthmoving services throughout Southern Tasmania. Complete the form and we will be in touch as soon as possible.',
-		'contact_cards'        => array(
-			array( 'icon' => 'fa-solid fa-phone',        'title' => 'Call Us',      'text' => '0429 680 514',                    'url' => 'tel:0429680514', 'wide' => '0' ),
-			array( 'icon' => 'fa-solid fa-envelope',     'title' => 'Email Us',     'text' => 'info@williamsexcavations.com.au', 'url' => 'mailto:info@williamsexcavations.com.au', 'wide' => '0' ),
-			array( 'icon' => 'fa-solid fa-location-dot', 'title' => 'Service Area', 'text' => "Hobart, Tasmania 7000\nand all of Southern Tasmania", 'url' => '', 'wide' => '1' ),
-		),
-		'contact_map'          => 'https://maps.google.com/maps?q=Hobart%2C%20Tasmania%207000%2C%20Australia&t=&z=12&ie=UTF8&iwloc=&output=embed',
-		'contact_form_heading' => 'Send Us a Message',
-		'contact_form_sub'     => 'Complete the form below and click send. We will be in touch as soon as possible.',
-		'contact_form_id'      => '',
-		'contact_form_note'    => 'We usually reply the same business day. For anything urgent please call 0429 680 514.',
 	);
 }
 

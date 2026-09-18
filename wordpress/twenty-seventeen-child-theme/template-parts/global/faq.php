@@ -11,21 +11,21 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$faqs      = we_rows( 'faqs' );
-$primary   = we_link( we_f( 'faq_cta_primary' ) );
-$secondary = we_link( we_f( 'faq_cta_secondary' ) );
-$more      = we_f( 'faq_intro_more' );
+$faqs      = we_opt_rows( 'faqs' );
+$primary   = we_link( we_opt( 'faq_cta_primary' ) );
+$secondary = we_link( we_opt( 'faq_cta_secondary' ) );
+$more      = we_opt( 'faq_intro_more' );
 ?>
 <section class="we-section" id="we-faq">
 	<div class="we-container">
 
 		<div class="we-section-head we-section-head--center" data-reveal>
-			<?php we_eyebrow( we_f( 'faq_eyebrow' ) ); ?>
-			<h2 class="we-h-lg"><?php echo esc_html( we_f( 'faq_heading' ) ); ?></h2>
+			<?php we_eyebrow( we_opt( 'faq_eyebrow' ) ); ?>
+			<h2 class="we-h-lg"><?php echo esc_html( we_opt( 'faq_heading' ) ); ?></h2>
 		</div>
 
 		<div class="we-faq-intro" data-reveal>
-			<p><?php echo esc_html( we_f( 'faq_intro_lead' ) ); ?></p>
+			<p><?php echo esc_html( we_opt( 'faq_intro_lead' ) ); ?></p>
 
 			<?php if ( $more ) : ?>
 				<div class="we-faq-intro__more" id="we-introMore" aria-hidden="true">
@@ -50,7 +50,7 @@ $more      = we_f( 'faq_intro_more' );
 
 		<?php if ( $faqs ) : ?>
 			<div class="we-faq-heading" data-reveal>
-				<h2 class="we-h-md"><?php echo esc_html( we_f( 'faq_list_heading' ) ); ?></h2>
+				<h2 class="we-h-md"><?php echo esc_html( we_opt( 'faq_list_heading' ) ); ?></h2>
 				<span class="we-rule"></span>
 			</div>
 

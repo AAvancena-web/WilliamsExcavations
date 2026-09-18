@@ -84,7 +84,7 @@ function we_acf_register_fields() {
 			'label_placement'       => 'top',
 			'hide_on_screen'        => array( 'the_content' ),
 			'active'                => true,
-			'description'           => __( 'Content for the redesigned homepage. Leave a field empty to fall back to the packaged default.', 'twentyseventeen-child' ),
+			'description'           => __( 'Content for the redesigned homepage. The guide, FAQ and contact blocks live under Site Design, since they render in the global footer on every page.', 'twentyseventeen-child' ),
 			'fields'                => array(
 
 				/* Hero */
@@ -235,48 +235,6 @@ function we_acf_register_fields() {
 				we_sub( 'cta_primary', __( 'Primary button', 'twentyseventeen-child' ), 'link', $link ),
 				we_sub( 'cta_secondary', __( 'Secondary button', 'twentyseventeen-child' ), 'link', $link ),
 
-				/* Guide and FAQ */
-				array( 'key' => 'field_we_tab_faq', 'label' => __( 'Guide and FAQ', 'twentyseventeen-child' ), 'type' => 'tab' ),
-				we_sub( 'faq_eyebrow', __( 'Eyebrow', 'twentyseventeen-child' ) ),
-				we_sub( 'faq_heading', __( 'Heading', 'twentyseventeen-child' ) ),
-				we_sub( 'faq_intro_lead', __( 'Opening paragraph', 'twentyseventeen-child' ), 'textarea', array( 'rows' => 4, 'new_lines' => '' ) ),
-				we_sub( 'faq_intro_more', __( 'Hidden behind read more', 'twentyseventeen-child' ), 'wysiwyg', array( 'media_upload' => 0, 'tabs' => 'visual', 'toolbar' => 'basic' ) ),
-				we_sub( 'faq_cta_primary', __( 'Primary button', 'twentyseventeen-child' ), 'link', $link ),
-				we_sub( 'faq_cta_secondary', __( 'Secondary button', 'twentyseventeen-child' ), 'link', $link ),
-				we_sub( 'faq_list_heading', __( 'Questions heading', 'twentyseventeen-child' ) ),
-				we_sub( 'faqs', __( 'Questions', 'twentyseventeen-child' ), 'repeater', array(
-					'layout'       => 'block',
-					'button_label' => __( 'Add question', 'twentyseventeen-child' ),
-					'instructions' => __( 'Every answer is always visible. There is no expand and collapse.', 'twentyseventeen-child' ),
-					'sub_fields'   => array(
-						we_sub( 'question', __( 'Question', 'twentyseventeen-child' ) ),
-						we_sub( 'answer', __( 'Answer', 'twentyseventeen-child' ), 'wysiwyg', array( 'media_upload' => 0, 'tabs' => 'visual', 'toolbar' => 'basic' ) ),
-					),
-				) ),
-
-				/* Contact */
-				array( 'key' => 'field_we_tab_contact', 'label' => __( 'Contact', 'twentyseventeen-child' ), 'type' => 'tab' ),
-				we_sub( 'contact_eyebrow', __( 'Eyebrow', 'twentyseventeen-child' ) ),
-				we_sub( 'contact_heading', __( 'Heading', 'twentyseventeen-child' ) ),
-				we_sub( 'contact_intro', __( 'Intro', 'twentyseventeen-child' ), 'textarea', array( 'rows' => 3, 'new_lines' => '' ) ),
-				we_sub( 'contact_cards', __( 'Info cards', 'twentyseventeen-child' ), 'repeater', array(
-					'layout'       => 'block',
-					'button_label' => __( 'Add card', 'twentyseventeen-child' ),
-					'sub_fields'   => array(
-						we_sub( 'icon', __( 'Icon class', 'twentyseventeen-child' ) ),
-						we_sub( 'title', __( 'Title', 'twentyseventeen-child' ) ),
-						we_sub( 'text', __( 'Text', 'twentyseventeen-child' ), 'textarea', array( 'rows' => 2, 'new_lines' => '' ) ),
-						we_sub( 'url', __( 'Link', 'twentyseventeen-child' ) ),
-						we_sub( 'wide', __( 'Full width', 'twentyseventeen-child' ), 'true_false', array( 'ui' => 1 ) ),
-					),
-				) ),
-				we_sub( 'contact_map', __( 'Map embed url', 'twentyseventeen-child' ), 'url', array(
-					'instructions' => __( 'The src of a Google Maps embed. The packaged default needs no API key.', 'twentyseventeen-child' ),
-				) ),
-				we_sub( 'contact_form_heading', __( 'Form heading', 'twentyseventeen-child' ) ),
-				we_sub( 'contact_form_sub', __( 'Form intro', 'twentyseventeen-child' ), 'textarea', array( 'rows' => 2, 'new_lines' => '' ) ),
-				we_sub( 'contact_form_id', __( 'Form', 'twentyseventeen-child' ), 'post_object', $cf7 ),
-				we_sub( 'contact_form_note', __( 'Form footnote', 'twentyseventeen-child' ) ),
 			),
 		)
 	);
@@ -344,6 +302,49 @@ function we_acf_register_fields() {
 				) ),
 				we_sub( 'opt_footer_cta', __( 'Footer button', 'twentyseventeen-child' ), 'link', $link ),
 				we_sub( 'opt_copyright', __( 'Copyright line', 'twentyseventeen-child' ) ),
+
+				/* Guide and FAQ, rendered in the global footer */
+				array( 'key' => 'field_we_tab_faq', 'label' => __( 'Guide and FAQ', 'twentyseventeen-child' ), 'type' => 'tab' ),
+				we_sub( 'faq_eyebrow', __( 'Eyebrow', 'twentyseventeen-child' ) ),
+				we_sub( 'faq_heading', __( 'Heading', 'twentyseventeen-child' ) ),
+				we_sub( 'faq_intro_lead', __( 'Opening paragraph', 'twentyseventeen-child' ), 'textarea', array( 'rows' => 4, 'new_lines' => '' ) ),
+				we_sub( 'faq_intro_more', __( 'Hidden behind read more', 'twentyseventeen-child' ), 'wysiwyg', array( 'media_upload' => 0, 'tabs' => 'visual', 'toolbar' => 'basic' ) ),
+				we_sub( 'faq_cta_primary', __( 'Primary button', 'twentyseventeen-child' ), 'link', $link ),
+				we_sub( 'faq_cta_secondary', __( 'Secondary button', 'twentyseventeen-child' ), 'link', $link ),
+				we_sub( 'faq_list_heading', __( 'Questions heading', 'twentyseventeen-child' ) ),
+				we_sub( 'faqs', __( 'Questions', 'twentyseventeen-child' ), 'repeater', array(
+					'layout'       => 'block',
+					'button_label' => __( 'Add question', 'twentyseventeen-child' ),
+					'instructions' => __( 'Every answer is always visible. There is no expand and collapse.', 'twentyseventeen-child' ),
+					'sub_fields'   => array(
+						we_sub( 'question', __( 'Question', 'twentyseventeen-child' ) ),
+						we_sub( 'answer', __( 'Answer', 'twentyseventeen-child' ), 'wysiwyg', array( 'media_upload' => 0, 'tabs' => 'visual', 'toolbar' => 'basic' ) ),
+					),
+				) ),
+
+				/* Contact, rendered in the global footer */
+				array( 'key' => 'field_we_tab_contact', 'label' => __( 'Contact', 'twentyseventeen-child' ), 'type' => 'tab' ),
+				we_sub( 'contact_eyebrow', __( 'Eyebrow', 'twentyseventeen-child' ) ),
+				we_sub( 'contact_heading', __( 'Heading', 'twentyseventeen-child' ) ),
+				we_sub( 'contact_intro', __( 'Intro', 'twentyseventeen-child' ), 'textarea', array( 'rows' => 3, 'new_lines' => '' ) ),
+				we_sub( 'contact_cards', __( 'Info cards', 'twentyseventeen-child' ), 'repeater', array(
+					'layout'       => 'block',
+					'button_label' => __( 'Add card', 'twentyseventeen-child' ),
+					'sub_fields'   => array(
+						we_sub( 'icon', __( 'Icon class', 'twentyseventeen-child' ) ),
+						we_sub( 'title', __( 'Title', 'twentyseventeen-child' ) ),
+						we_sub( 'text', __( 'Text', 'twentyseventeen-child' ), 'textarea', array( 'rows' => 2, 'new_lines' => '' ) ),
+						we_sub( 'url', __( 'Link', 'twentyseventeen-child' ) ),
+						we_sub( 'wide', __( 'Full width', 'twentyseventeen-child' ), 'true_false', array( 'ui' => 1 ) ),
+					),
+				) ),
+				we_sub( 'contact_map', __( 'Map embed url', 'twentyseventeen-child' ), 'url', array(
+					'instructions' => __( 'The src of a Google Maps embed. The packaged default needs no API key.', 'twentyseventeen-child' ),
+				) ),
+				we_sub( 'contact_form_heading', __( 'Form heading', 'twentyseventeen-child' ) ),
+				we_sub( 'contact_form_sub', __( 'Form intro', 'twentyseventeen-child' ), 'textarea', array( 'rows' => 2, 'new_lines' => '' ) ),
+				we_sub( 'contact_form_id', __( 'Form', 'twentyseventeen-child' ), 'post_object', $cf7 ),
+				we_sub( 'contact_form_note', __( 'Form footnote', 'twentyseventeen-child' ) ),
 			),
 		)
 	);

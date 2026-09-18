@@ -8,17 +8,17 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$cards = we_rows( 'contact_cards' );
-$map   = we_f( 'contact_map' );
+$cards = we_opt_rows( 'contact_cards' );
+$map   = we_opt( 'contact_map' );
 ?>
 <section class="we-section we-section--alt" id="we-contact">
 	<div class="we-container">
 
 		<div class="we-section-head we-section-head--center" data-reveal>
-			<?php we_eyebrow( we_f( 'contact_eyebrow' ) ); ?>
-			<h2 class="we-h-lg"><?php echo esc_html( we_f( 'contact_heading' ) ); ?></h2>
-			<?php if ( we_f( 'contact_intro' ) ) : ?>
-				<p class="we-lead"><?php echo esc_html( we_f( 'contact_intro' ) ); ?></p>
+			<?php we_eyebrow( we_opt( 'contact_eyebrow' ) ); ?>
+			<h2 class="we-h-lg"><?php echo esc_html( we_opt( 'contact_heading' ) ); ?></h2>
+			<?php if ( we_opt( 'contact_intro' ) ) : ?>
+				<p class="we-lead"><?php echo esc_html( we_opt( 'contact_intro' ) ); ?></p>
 			<?php endif; ?>
 		</div>
 
@@ -55,11 +55,11 @@ $map   = we_f( 'contact_map' );
 			</div>
 
 			<div class="we-contact-form-card" data-reveal="right">
-				<h2 class="we-h-md"><?php echo esc_html( we_f( 'contact_form_heading' ) ); ?></h2>
-				<p class="we-quote-card__sub"><?php echo esc_html( we_f( 'contact_form_sub' ) ); ?></p>
-				<?php we_form( we_f( 'contact_form_id' ) ); ?>
-				<?php if ( we_f( 'contact_form_note' ) ) : ?>
-					<p class="we-form-note"><?php echo esc_html( we_f( 'contact_form_note' ) ); ?></p>
+				<h2 class="we-h-md"><?php echo esc_html( we_opt( 'contact_form_heading' ) ); ?></h2>
+				<p class="we-quote-card__sub"><?php echo esc_html( we_opt( 'contact_form_sub' ) ); ?></p>
+				<?php we_form( we_opt( 'contact_form_id' ) ); ?>
+				<?php if ( we_opt( 'contact_form_note' ) ) : ?>
+					<p class="we-form-note"><?php echo esc_html( we_opt( 'contact_form_note' ) ); ?></p>
 				<?php endif; ?>
 			</div>
 
