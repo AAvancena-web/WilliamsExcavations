@@ -318,11 +318,16 @@ body.nav-open .nav-drawer{transform:translateX(0);visibility:visible;}
 .nav-drawer__brand img{width:100%;max-width:184px;display:block;}
 .drawer-close{width:42px;height:42px;border-radius:50%;background:var(--secondary);border:0;color:var(--primary);font-size:17px;cursor:pointer;}
 .nav-drawer nav>ul>li{border-bottom:1px solid rgba(255,255,255,.1);}
+/* the toggle sits beside the link, not inside it, so the row owns the layout */
+.nav-drawer .drawer-row{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 2px;
+}
+.nav-drawer .drawer-row>a,
 .nav-drawer nav>ul>li>a{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:16px 2px;font-family:var(--font-display);font-size:21px;
+  flex:1;font-family:var(--font-display);font-size:21px;
   letter-spacing:.04em;text-transform:uppercase;font-weight:600;
 }
+.nav-drawer nav>ul>li>a{display:block;padding:16px 2px;}
 .nav-drawer .sub-toggle{
   background:var(--primary-soft);border:0;color:var(--secondary);
   width:32px;height:32px;border-radius:50%;cursor:pointer;flex:none;
@@ -1062,7 +1067,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
       <li><a href="/">Home</a></li>
       <li><a href="/about-us/">About Us</a></li>
       <li>
-        <a href="/excavation-hire-hobart/">Excavation <button class="sub-toggle" aria-label="Toggle submenu"><i class="fa-solid fa-chevron-down"></i></button></a>
+        <div class="drawer-row"><a href="/excavation-hire-hobart/">Excavation</a><button type="button" class="sub-toggle" aria-expanded="false" aria-label="Toggle Excavation submenu"><i class="fa-solid fa-chevron-down"></i></button></div>
         <ul class="submenu-m">
           <li><a href="/drainage-installation-hobart/">Drainage</a></li>
           <li><a href="/land-clearing-hobart/">Land Clearing</a></li>
@@ -1070,7 +1075,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
         </ul>
       </li>
       <li>
-        <a href="/earthmoving-contractors-hobart/">Earthmoving <button class="sub-toggle" aria-label="Toggle submenu"><i class="fa-solid fa-chevron-down"></i></button></a>
+        <div class="drawer-row"><a href="/earthmoving-contractors-hobart/">Earthmoving</a><button type="button" class="sub-toggle" aria-expanded="false" aria-label="Toggle Earthmoving submenu"><i class="fa-solid fa-chevron-down"></i></button></div>
         <ul class="submenu-m">
           <li><a href="/plant-equipment-hire-hobart/">Plant and Truck Hire</a></li>
           <li><a href="/dam-construction-hobart/">Dam Construction</a></li>
@@ -1078,7 +1083,7 @@ body.nav-open .nav-scrim{opacity:1;visibility:visible;}
         </ul>
       </li>
       <li>
-        <a href="/civil-construction-hobart/">Civil Works <button class="sub-toggle" aria-label="Toggle submenu"><i class="fa-solid fa-chevron-down"></i></button></a>
+        <div class="drawer-row"><a href="/civil-construction-hobart/">Civil Works</a><button type="button" class="sub-toggle" aria-expanded="false" aria-label="Toggle Civil Works submenu"><i class="fa-solid fa-chevron-down"></i></button></div>
         <ul class="submenu-m">
           <li><a href="/site-preparation-hobart/">Site Preparation</a></li>
           <li><a href="/house-pad-contractors-hobart/">House Pads and Shed Pads</a></li>
